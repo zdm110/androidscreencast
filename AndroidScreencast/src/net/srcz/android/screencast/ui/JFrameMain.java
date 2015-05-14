@@ -38,11 +38,12 @@ public class JFrameMain extends JFrame {
 	private JPanelScreen jp = new JPanelScreen();
 	private JToolBar jtb = new JToolBar();
 	private JToolBar jtbHardkeys = new JToolBar();
-	private JToggleButton jtbRecord = new JToggleButton("Record");
+	//private JToggleButton jtbRecord = new JToggleButton("Record");
 	private JButton jbOpenUrl = new JButton("Open Url");
 	JScrollPane jsp;
 
-	private JButton jbExplorer = new JButton("Explore");
+	private JButton jbKbRight = new JButton("->");
+	private JButton jbKbLeft = new JButton("<-");
 	private JButton jbKbHome = new JButton("Home");
 	private JButton jbKbMenu = new JButton("Menu");
 	private JButton jbKbBack = new JButton("Back");
@@ -50,7 +51,9 @@ public class JFrameMain extends JFrame {
 	private JButton jbKbPhoneOn = new JButton("Call");
 	private JButton jbKbPhoneOff = new JButton("End call");
 	private JButton jbKbPower = new JButton("Power");  //zhudm add
-	private JButton jbKbUnlock = new JButton("Unlock");  //zhudm add
+	private JButton jbKbUnlock = new JButton("Unlock");  //zhudm add	
+	private JButton jbKbUp = new JButton("Up");  //zhudm add	
+	private JButton jbKbDown = new JButton("Down");  //zhudm add
 
 	public class KbActionListener implements ActionListener {
 
@@ -120,9 +123,9 @@ public class JFrameMain extends JFrame {
 
 	public void initialize() throws IOException {
 		jtb.setFocusable(false);
-		jbExplorer.setFocusable(false);
-		jtbRecord.setFocusable(false);
-		jbOpenUrl.setFocusable(false);
+		//jbRight.setFocusable(false);
+		//jtbRecord.setFocusable(false);
+		//jbOpenUrl.setFocusable(false);
 		jbKbHome.setFocusable(false);
 		jbKbMenu.setFocusable(false);
 		jbKbBack.setFocusable(false);
@@ -130,7 +133,11 @@ public class JFrameMain extends JFrame {
 		//jbKbPhoneOn.setFocusable(false);
 		//jbKbPhoneOff.setFocusable(false);
 		jbKbPower.setFocusable(false);
-		jbKbUnlock.setFocusable(false);
+		jbKbUnlock.setFocusable(false);		
+		jbKbUp.setFocusable(false);
+		jbKbDown.setFocusable(false);
+		jbKbRight.setFocusable(false);	
+		jbKbLeft.setFocusable(false);		
 
 		jbKbHome.addActionListener(new KbActionListener(
 				ConstEvtKey.KEYCODE_HOME));
@@ -144,11 +151,32 @@ public class JFrameMain extends JFrame {
 		//		ConstEvtKey.KEYCODE_CALL));
 		//jbKbPhoneOff.addActionListener(new KbActionListener(
 		//		ConstEvtKey.KEYCODE_ENDCALL));
+		//zhudm add
 		jbKbPower.addActionListener(new KbActionListener(
 				ConstEvtKey.KEYCODE_POWER));		
 		jbKbUnlock.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				new AndroidDevice(device).unLock();
+			}
+		});
+		jbKbRight.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new AndroidDevice(device).swapRight();
+			}
+		});
+		jbKbLeft.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new AndroidDevice(device).swapLeft();
+			}
+		});
+		jbKbUp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new AndroidDevice(device).touchUp();
+			}
+		});
+		jbKbDown.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new AndroidDevice(device).touchDown();
 			}
 		});
 
@@ -160,6 +188,10 @@ public class JFrameMain extends JFrame {
 		//jtbHardkeys.add(jbKbPhoneOff);
 		jtbHardkeys.add(jbKbPower);
 		jtbHardkeys.add(jbKbUnlock);
+		jtbHardkeys.add(jbKbUp);
+		jtbHardkeys.add(jbKbDown);
+		jtbHardkeys.add(jbKbRight);
+		jtbHardkeys.add(jbKbLeft);
 
 		setIconImage(Toolkit.getDefaultToolkit().getImage(
 				getClass().getResource("icon.png")));
@@ -257,6 +289,7 @@ public class JFrameMain extends JFrame {
 		jp.addMouseListener(ma);
 		jp.addMouseWheelListener(ma);
 
+/*
 		jtbRecord.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
@@ -291,6 +324,8 @@ public class JFrameMain extends JFrame {
 			}
 		});
 		jtb.add(jbOpenUrl);
+*/
+
 
 	}
 

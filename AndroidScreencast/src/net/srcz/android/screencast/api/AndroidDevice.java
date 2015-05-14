@@ -84,6 +84,24 @@ public class AndroidDevice {
 		executeCommand("input touchscreen swipe 249 662 448 662 300");
 	}
 
+	public void swapRight() {
+		System.out.println("swap right"); 
+		executeCommand("input touchscreen swipe 448 662 100 662 300");
+	}	
+	
+	public void swapLeft() {
+		System.out.println("swap left"); 
+		executeCommand("input touchscreen swipe 100 662 448 662 300");
+	}
+	public void touchUp() {
+		System.out.println("touch Up"); 
+		executeCommand("input touchscreen swipe 373 555 373 404 300");
+	}
+	public void touchDown() {
+		System.out.println("touch Down"); 
+		executeCommand("input touchscreen swipe 373 404 373 555 300");
+	}
+
 	public List<FileInfo> list(String path) {
 		try {
 			String s = executeCommand("ls -l "+path);
